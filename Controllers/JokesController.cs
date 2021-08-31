@@ -30,6 +30,11 @@ namespace JokesWebApp.Controllers
             return View();
         }
 
+        public async Task<IActionResult> ShowSearchResaults(String SearchPhrase)
+        {
+            return View("Index", await _context.Joke.Where(j => j.JokeQuestion.Contains(SearchPhrase)).ToListAsync());
+        }
+
         // GET: Jokes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
